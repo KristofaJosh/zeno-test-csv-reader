@@ -1,0 +1,93 @@
+
+.App {
+    max-width: 1920px;
+    background: #000;
+    color: #fff;
+    height: 100vh;
+    padding: 1rem;
+    text-transform: uppercase;
+    overflow: scroll;
+
+}
+
+.content {
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.header {
+    text-align: center;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo img {
+    margin: 1rem;
+    max-width: 300px;
+    width: 100%;
+}
+
+.logo p:nth-child(3) {
+    font-size: 0.7rem;
+}
+
+.form {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+}
+
+.form span {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card {
+    background: #fff;
+    color: #000;
+    border-radius: 20px;
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.edit {
+    display: flex;
+    justify-content: space-between;
+    width: 20%;
+}
+
+
+.card-info {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 2fr 2fr 2fr;
+    margin: 1rem;
+    font-weight: bolder;
+}
+
+.csvbody {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+button {
+    border: none;
+    padding: 0.5rem;
+    width: 106px;
+    border-radius: 20px;
+    background: #fdfdfd;
+    text-transform: uppercase;
+    color: #000;
+    font-weight: 700;
+}
