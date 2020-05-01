@@ -17,7 +17,7 @@ class ZenoCsvViewSet(viewsets.ModelViewSet):
 class ZenoFileUploadView(APIView):
     parser_class = (FileUploadParser,)
 
-    def put(self, request, *args, **kwargs):
+    def patch(self, request, *args, **kwargs):
 
         file_obj = request.data['file']
 
@@ -25,13 +25,15 @@ class ZenoFileUploadView(APIView):
         dataframe = pd.DataFrame(csv_data, columns=['id', 'timestamp', 'temperature', 'duration'])
 
         for row in dataframe.itertuples():
-            fields = {'idd': row.id, 'timestamp': row.timestamp, 'temperature': row.temperature, 'duration': row.duration}
-            print(fields)
-            data_serializer = ZenoCsvSerializer(data=fields)
-            if data_serializer.is_valid():
-                data_serializer.save()
-
-                # return Response(data_serializer.data, status=status.HTTP_201_CREATED)
+            if ZenoCsv.objects.filter(idd=row.id).exists():
+                pass
             else:
-                return Response(data_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+                fields = {'idd': row.id, 'timestamp': row.timestamp,
+                          'temperature': row.temperature, 'duration': row.duration}
+                data_serializer = ZenoCsvSerializer(data=fields)
+                if data_serializer.is_valid():
+                    data_serializer.save()
 
+                    # return Response(data_serializer.data, status=status.HTTP_201_CREATED)
+                else:
+                    return Response(data_serializer.errors, status=status.HTTP_400_BAD_REQUEST)

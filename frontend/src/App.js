@@ -15,7 +15,6 @@ function App() {
             url: 'http://127.0.0.1:8000/csv_db/',
         }).then((response) => {
             setData(response.data);
-            console.log(response.data)
             if (response.data.length > 0) {
                 setStatus({loading: false, message: 'Data Updated'});
             } else {
@@ -42,17 +41,17 @@ function App() {
             formData.append('file', fileUpload.file);
 
             axios({
-                method: 'PUT',
+                method: 'PATCH',
                 url: 'http://127.0.0.1:8000/upload/',
                 data: formData
             }).then((response) => {
-                setButtonStates({loading: true, status: 'detached'});
                 if (response.status === 201) {
-                    setStatus({loading: messageStatus.loading, message: 'Uploaded!'});
+                    setButtonStates({loading: false, status: 'detached'});
+                    setStatus({loading: false, message: 'Uploaded!'});
                 }
 
             }).catch((err) => {
-                setButtonStates({loading: true, status: 'detach'});
+                setButtonStates({loading: false, status: 'detach'});
                 if (err.response.status === 500) {
                     setStatus({loading: false, message: 'Invalid File format'});
                 }
@@ -75,7 +74,7 @@ function App() {
 
                     <span>
                         <input type="file" accept={'csv'} onChange={handleChange}/>
-                        <button type={'submit'} onClick={submitForm}>
+                        <button type={'submit'} onClick={submitForm} disabled={buttonStates.loading}>
                             {buttonStates.loading ? buttonStates.status : buttonStates.status}
                         </button>
 
@@ -95,7 +94,7 @@ function App() {
 
                     {data.length === 0 ?
                         <div className="csvbody">
-                            <p>{messageStatus.loading ? messageStatus.message : 'No Data Found'}</p>
+                            <p>{buttonStates.loading ? 'Loading ...' : 'No Data Found'}</p>
                         </div>
 
                         :
