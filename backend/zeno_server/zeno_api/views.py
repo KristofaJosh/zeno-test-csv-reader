@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 from rest_framework import viewsets
 from rest_framework import status
 from .models import ZenoCsv
-from .serializers import ZenoCsvSerializer, ZenoCsvUploadSerializer
+from .serializers import ZenoCsvSerializer
 import pandas as pd
 
 

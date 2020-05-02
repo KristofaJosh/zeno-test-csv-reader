@@ -4,7 +4,6 @@ from .views import ZenoCsvViewSet, ZenoFileUploadView
 
 router = routers.DefaultRouter()
 router.register('csv_db', ZenoCsvViewSet)
-# router.register('upload', ZenoFileUploadView)
 
 urlpatterns = [
     path('', include(router.urls)),

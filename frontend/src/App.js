@@ -85,9 +85,9 @@ function App() {
                     <span className={'csv-head'}>
                         <div className={'card-info'}>
                             <span>ID</span>
-                            <span>TimeStamp</span>
                             <span>Temperature</span>
                             <span>Duration</span>
+                            <span>TimeStamp</span>
                         </div>
                     </span>
 
@@ -102,9 +102,9 @@ function App() {
                             <div className={'card'}>
                                 <div key={el.idd} className={'card-info'}>
                                     <span>{el.idd}</span>
-                                    <span>{el.timestamp}</span>
                                     <span>{el.temperature}</span>
                                     <span>{el.duration}</span>
+                                    <span>{el.timestamp}</span>
                                 </div>
                                 {/*<button type={'submit'} onClick={submitForm}>edit</button>*/}
                             </div>

@@ -1,0 +1,31 @@
+version: "3.7"
+
+services:
+  django:
+    container_name: django_server
+    build: ./backend/zeno_server
+    command: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+    volumes:
+    - ./backend/zeno_server:/zeno_task/backend
+    ports:
+      - "8000:8000"
+
+  client:
+    container_name: react_app
+    stdin_open: true
+    build: ./frontend
+    command: yarn start
+
+    volumes:
+      - ./frontend:/zeno_task/frontend
+      - ./frontend/node_modules:/zeno_task/frontend/node_modules
+
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+
+
+volumes:
+  node-modules:
+
