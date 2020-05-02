@@ -20,7 +20,7 @@ an application that reads a csv file and transfers it to a database (SQL)
         - run _yarn start_
 
 # Docs
-- view the documentation of this project in **./docs** folder
+- view the documentation of this project in this [folder](https://github.com/KristofaJosh/zeno-test-csv-reader/blob/master/docs/DOCUMENTATION.md)
 
 ### Tools used for this project
 - Python (Django)

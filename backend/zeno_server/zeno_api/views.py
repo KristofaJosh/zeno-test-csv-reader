@@ -6,12 +6,18 @@ from rest_framework import status
 from .models import ZenoCsv
 from .serializers import ZenoCsvSerializer
 import pandas as pd
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 # Create your views here.
 class ZenoCsvViewSet(viewsets.ModelViewSet):
     serializer_class = ZenoCsvSerializer
     queryset = ZenoCsv.objects.all()
+
+    def get(self, request):
+        logger.error("Test!!")
 
 
 class ZenoFileUploadView(APIView):
@@ -25,6 +31,7 @@ class ZenoFileUploadView(APIView):
         dataframe = pd.DataFrame(csv_data, columns=['id', 'timestamp', 'temperature', 'duration'])
 
         for row in dataframe.itertuples():
+            logger.error("Test!!")
             if ZenoCsv.objects.filter(idd=row.id).exists():
                 pass
             else:
@@ -37,3 +44,9 @@ class ZenoFileUploadView(APIView):
                     # return Response(data_serializer.data, status=status.HTTP_201_CREATED)
                 else:
                     return Response(data_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+# def logger():
+#
+#     logging.basicConfig(filename='demo.log',
+#                         level=logging.DEBUG,
+#                         format='%(asctime)s - %(name)s - %(threadName)s -  %(levelname)s - %(message)s')

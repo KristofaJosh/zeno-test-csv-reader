@@ -12,3 +12,8 @@ class ZenoCsv(models.Model):
 
     def __str__(self):
         return self.idd
+
+
+class ZenoLogger(models.Model):
+    method = models.CharField(max_length=6, default='', null=True)
+    timestamp = models.DateTimeField(auto_now=True)
